@@ -64,6 +64,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="TestScene.cpp" />
+    <ClCompile Include="Donuts.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Simple2D.hlsl">
@@ -116,6 +117,7 @@
     <ClInclude Include="Engine\Texture.h">
       <Filter>01Engine\ObjectManager</Filter>
     </ClInclude>
+    <ClInclude Include="Donuts.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

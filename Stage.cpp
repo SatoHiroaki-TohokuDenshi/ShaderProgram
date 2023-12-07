@@ -1,4 +1,5 @@
 #include "Stage.h"
+#include "Donuts.h"
 
 //コンストラクタ
 Stage::Stage(GameObject* parent)
@@ -13,7 +14,7 @@ Stage::~Stage() {
 
 //初期化
 void Stage::Initialize() {
-
+	Instantiate<Donuts>(this);
 }
 
 //更新
