@@ -99,22 +99,22 @@
       <Filter>01Engine\EngineBase</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Fbx.h">
-      <Filter>01Engine\EngineBase</Filter>
+      <Filter>01Engine\ObjectManager</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Model.h">
-      <Filter>01Engine\EngineBase</Filter>
+      <Filter>01Engine\ObjectManager</Filter>
     </ClInclude>
     <ClInclude Include="Engine\RootJob.h">
-      <Filter>01Engine\EngineBase</Filter>
+      <Filter>01Engine\ObjectManager</Filter>
     </ClInclude>
     <ClInclude Include="Engine\SceneManager.h">
-      <Filter>01Engine\EngineBase</Filter>
+      <Filter>01Engine\ObjectManager</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Sprite.h">
-      <Filter>01Engine\EngineBase</Filter>
+      <Filter>01Engine\ObjectManager</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Texture.h">
-      <Filter>01Engine\EngineBase</Filter>
+      <Filter>01Engine\ObjectManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
