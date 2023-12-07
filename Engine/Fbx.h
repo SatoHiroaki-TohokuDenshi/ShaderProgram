@@ -24,12 +24,16 @@ class Fbx
 		XMFLOAT4 diffuse;
 	};
 
+	// コンスタントバッファに送る情報
 	struct CONSTANT_BUFFER
 	{
-		XMMATRIX	matWVP;
-		XMMATRIX	matNormal;
-		XMFLOAT4	diffuseColor;
-		int			isTextured;
+		XMMATRIX matWorld;	// ワールド行列
+		XMMATRIX matWVP;	// ワールドビュープロジェクション行列
+		XMMATRIX matNormal;	// 法線変形行列
+		XMFLOAT4 diffuse;	// ディフューズ
+		XMFLOAT4 lightPos;	// 光源位置
+		XMFLOAT4 eyePos;	// 視点
+		BOOL isTextured;	// テクスチャがあるか
 	};
 
 	struct VERTEX
@@ -42,6 +46,8 @@ class Fbx
 	int vertexCount_;	//頂点数
 	int polygonCount_;	//ポリゴン数
 	int materialCount_;	//マテリアルの個数
+
+	XMFLOAT4 lightPos_;
 
 	ID3D11Buffer* pVertexBuffer_;
 	ID3D11Buffer** pIndexBuffer_;
