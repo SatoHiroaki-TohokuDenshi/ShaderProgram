@@ -4,12 +4,10 @@
 #include "Camera.h"
 #include "Texture.h"
 
-const XMFLOAT4 LIGHT{ 1.0, 0, 0, 0 };
-
 Fbx::Fbx()
 	:vertexCount_(0), polygonCount_(0), materialCount_(0),
 	pVertexBuffer_(nullptr), pIndexBuffer_(nullptr), pConstantBuffer_(nullptr),
-	pMaterialList_(nullptr), lightPos_(LIGHT)
+	pMaterialList_(nullptr)
 {
 }
 
@@ -245,17 +243,19 @@ void Fbx::Draw(Transform& transform)
 		cb.matWorld = XMMatrixTranspose(transform.GetWorldMatrix());
 		cb.matWVP = XMMatrixTranspose(transform.GetWorldMatrix() * Camera::GetViewMatrix() * Camera::GetProjectionMatrix());
 		cb.matNormal = XMMatrixTranspose(transform.GetNormalMatrix());
-		cb.lightPos = lightPos_;
-		XMStoreFloat4(&cb.eyePos, Camera::GetCameraPos());
 		cb.diffuse = pMaterialList_[i].diffuse;
 
 		cb.isTextured = pMaterialList_[i].pTexture != nullptr;
 	
+		
 		D3D11_MAPPED_SUBRESOURCE pdata;
 		Direct3D::pContext_->Map(pConstantBuffer_, 0, D3D11_MAP_WRITE_DISCARD, 0, &pdata);	// GPUからのデータアクセスを止める
 		memcpy_s(pdata.pData, pdata.RowPitch, (void*)(&cb), sizeof(cb));	// データを値を送る
 
 		Direct3D::pContext_->Unmap(pConstantBuffer_, 0);	//再開
+		
+
+		//Direct3D::pContext_->UpdateSubresource(pConstantBuffer_, 0, NULL, &cb, 0, 0);
 
 		//頂点バッファ、インデックスバッファ、コンスタントバッファをパイプラインにセット
 		//頂点バッファ

@@ -1,6 +1,8 @@
 #include "Stage.h"
 #include "Engine/Direct3D.h"
 #include "Engine/Camera.h"
+#include "Engine/Model.h"
+
 #include "Donuts.h"
 
 //コンストラクタ
@@ -17,15 +19,16 @@ Stage::~Stage() {
 //初期化
 void Stage::Initialize() {
 	Instantiate<Donuts>(this);
+
 	InitConstantBuffer();
 }
 
 void Stage::InitConstantBuffer() {
 	D3D11_BUFFER_DESC cb;
 	cb.ByteWidth = sizeof(CB_STAGE);
-	cb.Usage = D3D11_USAGE_DYNAMIC;
+	cb.Usage = D3D11_USAGE_DEFAULT;
 	cb.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-	cb.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	cb.CPUAccessFlags = 0;
 	cb.MiscFlags = 0;
 	cb.StructureByteStride = 0;
 
@@ -43,23 +46,19 @@ void Stage::Update() {
 }
 
 void Stage::UpdateConstantBuffer() {
-	XMFLOAT4 eye;
-	XMStoreFloat4(&eye, Camera::GetCameraPos());
+	CB_STAGE cb;
+	XMStoreFloat4(&cb.eyePos, Camera::GetCameraPos());
+	cb.lightPos = light_;
 
-	CB_STAGE cb{
-		light_,		//光源
-		eye			//視点
-	};
+	Direct3D::pContext_->UpdateSubresource(pCBStage_, 0, NULL, &cb, 0, 0);
 
-	//Direct3D::pContext_->UpdateSubresource(pCBStage_, 0, NULL, &cb, 0, 0);
-	
-	//Direct3D::pContext_->VSSetConstantBuffers(1, 1, &pCBStage_);
-	//Direct3D::pContext_->PSSetConstantBuffers(1, 1, &pCBStage_);
+	Direct3D::pContext_->VSSetConstantBuffers(1, 1, &pCBStage_);
+	Direct3D::pContext_->PSSetConstantBuffers(1, 1, &pCBStage_);
 }
 
 //描画
 void Stage::Draw() {
-	
+
 }
 
 //開放
