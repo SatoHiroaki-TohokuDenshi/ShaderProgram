@@ -14,6 +14,9 @@ private:
 	void UpdateConstantBuffer();
 	ID3D11Buffer* pCBStage_;
 
+	int hModel_;
+	Transform ballT_;
+
 public:
 	//コンストラクタ
 	Stage(GameObject* parent);
@@ -32,4 +35,6 @@ public:
 
 	//開放
 	void Release() override;
+
+	void SetLightPos(XMFLOAT3 f);
 };
