@@ -44,7 +44,7 @@ struct VS_OUT
 VS_OUT VS(float4 pos : POSITION, float4 uv : TEXCOORD, float4 normal : NORMAL)
 {
 	//ピクセルシェーダーへ渡す情報
-	VS_OUT outData;
+	VS_OUT outData = (VS_OUT)0;
 
 	//ローカル座標に、ワールド・ビュー・プロジェクション行列をかけて
 	//スクリーン座標に変換し、ピクセルシェーダーへ
@@ -77,25 +77,25 @@ VS_OUT VS(float4 pos : POSITION, float4 uv : TEXCOORD, float4 normal : NORMAL)
 //───────────────────────────────────────
 float4 PS(VS_OUT inData) : SV_Target
 {
-	float4 lightColor = float4(1.0, 1.0, 1.0, 1.0);		// 光源の色
-	float4 ambientColor = float4(0.2, 0.2, 0.2, 1.0);	// 環境光の色
+	float4 lightColor = float4(1.0, 1.0, 1.0, 1.0);		// 光源の色(強さ)
+	float4 ambientColor = float4(0.2, 0.2, 0.2, 1.0);	// 環境光の色(強さ)
 
-	float4 diffuse;
-	float4 ambient;
-	float4 specular;
+	float4 diffuse;		// 拡散反射
+	float4 ambient;		// 環境光
+	float4 specular;	// 鏡面反射
 
 	if (isTextured) {
 		diffuse = lightColor * g_texture.Sample(g_sampler, inData.uv) * inData.color;
-		ambient = lightColor * g_texture.Sample(g_sampler, inData.uv) * ambientColor;
+		ambient = lightColor * g_texture.Sample(g_sampler, inData.uv) * ambinetColor;
 	}
 	else {
 		diffuse = lightColor * diffuseColor * inData.color;
-		ambient = lightColor * diffuseColor * ambientColor;
+		ambient = lightColor * diffuseColor * ambinetColor;
 	}
 
 	float4 nLight = saturate(dot(inData.normal, normalize(lightPos)));
 	float4 ref = normalize(2 * nLight * inData.normal - normalize(lightPos));
-	specular = pow(saturate(dot(ref, normalize(inData.eyeDir))), 8);
+	specular = pow(saturate(dot(ref, normalize(inData.eyeDir))), 8) * specularColor;
 
 	return (diffuse + ambient + specular);
 }
