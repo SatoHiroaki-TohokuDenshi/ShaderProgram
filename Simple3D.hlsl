@@ -93,9 +93,9 @@ float4 PS(VS_OUT inData) : SV_Target
 		ambient = lightColor * diffuseColor * ambinetColor;
 	}
 
-	float4 nLight = saturate(dot(inData.normal, normalize(lightPos)));
+	float4 nLight = dot(inData.normal, normalize(lightPos));
 	float4 ref = normalize(2 * nLight * inData.normal - normalize(lightPos));
-	specular = pow(saturate(dot(ref, normalize(inData.eyeDir))), 8) * specularColor;
+	specular = pow(saturate(dot(ref, normalize(inData.eyeDir))), shininess) * specularColor;
 
 	return (diffuse + ambient + specular);
 }
