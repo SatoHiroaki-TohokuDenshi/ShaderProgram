@@ -22,6 +22,9 @@ class Fbx
 	{
 		Texture* pTexture;
 		XMFLOAT4 diffuse;
+		XMFLOAT4 ambient;
+		XMFLOAT4 specular;
+		float    shininess;
 	};
 
 	// コンスタントバッファに送る情報
@@ -31,6 +34,9 @@ class Fbx
 		XMMATRIX matWVP;	// ワールドビュープロジェクション行列
 		XMMATRIX matNormal;	// 法線変形行列
 		XMFLOAT4 diffuse;	// ディフューズ
+		XMFLOAT4 ambient;	// アンビエント
+		XMFLOAT4 specular;	// スペキュラー
+		float	 shininess;	// シャイニネス
 		BOOL isTextured;	// テクスチャがあるか
 	};
 

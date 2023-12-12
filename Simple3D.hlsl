@@ -14,6 +14,9 @@ cbuffer gModel : register(b0)
 	float4x4	matWVP;			// ワールド・ビュー・プロジェクションの合成行列
 	float4x4	matNormal;		// 法線変形行列
 	float4		diffuseColor;	// マテリアルの色＝拡散反射係数
+	float4		ambinetColor;	// 環境光係数
+	float4		specularColor;	// 鏡面反射係数
+	float		shininess;		// 鏡面反射強度
 	bool		isTextured;		// テクスチャーが貼られているかどうか
 };
 
