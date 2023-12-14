@@ -1,5 +1,5 @@
 //───────────────────────────────────────
- // テクスチャ＆サンプラーデータのグローバル変数定義
+// テクスチャ＆サンプラーデータのグローバル変数定義
 //───────────────────────────────────────
 Texture2D		g_texture : register(t0);	//テクスチャー
 SamplerState	g_sampler : register(s0);	//サンプラー
@@ -78,7 +78,6 @@ VS_OUT VS(float4 pos : POSITION, float4 uv : TEXCOORD, float4 normal : NORMAL)
 float4 PS(VS_OUT inData) : SV_Target
 {
 	float4 lightColor = float4(1.0, 1.0, 1.0, 1.0);		// 光源の色(強さ)
-	float4 ambientColor = float4(0.2, 0.2, 0.2, 1.0);	// 環境光の色(強さ)
 
 	float4 diffuse;		// 拡散反射
 	float4 ambient;		// 環境光

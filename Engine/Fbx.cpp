@@ -199,7 +199,7 @@ void Fbx::InitMaterial(fbxsdk::FbxNode* pNode)
 		FbxDouble3 ambient = pMaterial->Ambient;
 
 		FbxDouble3 specular = FbxDouble3(0, 0, 0);
-		FbxDouble shininess = FbxDouble(0);
+		FbxDouble shininess = FbxDouble(1);
 		if (pMaterial->GetClassId().Is(FbxSurfacePhong::ClassId)) {
 			specular = pMaterial->Specular;
 			shininess = pMaterial->Shininess;
