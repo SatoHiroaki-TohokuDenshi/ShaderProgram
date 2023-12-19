@@ -38,9 +38,15 @@ void Model::SetTransform(int hModel, Transform transform)
 	modelList[hModel]->transform_ = transform;
 	//モデル番号は、modelListのインデックス
 }
-void Model::Draw(int hModel) {
+
+void Model::Draw3D(int hModel) {
 	//モデル番号は、modelListのインデックス
-	modelList[hModel]->pfbx_->Draw(modelList[hModel]->transform_);
+	modelList[hModel]->pfbx_->Draw3D(modelList[hModel]->transform_);
+}
+
+void Model::DrawToon(int hModel) {
+	//モデル番号は、modelListのインデックス
+	modelList[hModel]->pfbx_->DrawToon(modelList[hModel]->transform_);
 }
 
 void Model::Release()

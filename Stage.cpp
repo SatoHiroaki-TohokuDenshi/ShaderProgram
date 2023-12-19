@@ -79,7 +79,7 @@ void Stage::UpdateConstantBuffer() {
 //•`‰æ
 void Stage::Draw() {
 	Model::SetTransform(hModel_, ballT_);
-	Model::Draw(hModel_);
+	Model::Draw3D(hModel_);
 }
 
 //ŠJ•ú

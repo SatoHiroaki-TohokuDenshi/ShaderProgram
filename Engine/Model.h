@@ -14,6 +14,7 @@ namespace Model {
 	};
 	int Load(std::string fileName);
 	void SetTransform(int hModel, Transform transform);
-	void Draw(int hModel);
+	void Draw3D(int hModel);
+	void DrawToon(int hModel);
 	void Release();
 }

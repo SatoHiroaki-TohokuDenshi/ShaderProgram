@@ -27,7 +27,7 @@ void Donuts::Update() {
 //•`‰æ
 void Donuts::Draw(){
 	Model::SetTransform(hModel_, transform_);
-	Model::Draw(hModel_);
+	Model::DrawToon(hModel_);
 }
 
 //ŠJ•ú
