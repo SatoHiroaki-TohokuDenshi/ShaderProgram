@@ -73,6 +73,9 @@
     <FxCompile Include="Simple3D.hlsl">
       <Filter>02Shader</Filter>
     </FxCompile>
+    <FxCompile Include="ToonShader.hlsl">
+      <Filter>02Shader</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\SafeMacro.h" />

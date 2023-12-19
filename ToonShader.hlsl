@@ -55,7 +55,7 @@ VS_OUT VS(float4 pos : POSITION, float4 uv : TEXCOORD, float4 normal : NORMAL)
 
 	// ñ@ê¸Çïœå`
 	normal.w = 0;
-	normal = mul(normal , matNormal);
+	normal = mul(normal, matNormal);
 	normal = normalize(normal);
 
 	outData.normal = normal;
@@ -83,6 +83,14 @@ float4 PS(VS_OUT inData) : SV_Target
 	float4 ambient;		// ä¬ã´åı
 	float4 specular;	// ãæñ îΩéÀ
 
+	// äKí≤ïœä∑
+	float n1 = 1 / 4.0;
+	float n2 = 2 / 4.0;
+	float n3 = 3 / 4.0;
+	float n4 = 4 / 4.0;
+	float c = 0.1 * step(n1, inData.color.r) + 0.2 * step(n2, inData.color.r) + 0.3 * step(n3, inData.color.r) + 0.4 * step(n4, inData.color.r);
+	inData.color = float4(c, c, c, 1.0);
+
 	if (isTextured) {
 		diffuse = lightColor * g_texture.Sample(g_sampler, inData.uv) * inData.color;
 		ambient = lightColor * g_texture.Sample(g_sampler, inData.uv) * ambinetColor;
@@ -96,5 +104,5 @@ float4 PS(VS_OUT inData) : SV_Target
 	float4 ref = normalize(2 * nLight * inData.normal - normalize(lightPos));
 	specular = pow(saturate(dot(ref, normalize(inData.eyeDir))), shininess) * specularColor;
 
-	return (diffuse + ambient + specular);
+	return (inData.color);
 }
