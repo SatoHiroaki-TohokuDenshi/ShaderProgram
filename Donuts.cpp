@@ -17,11 +17,13 @@ void Donuts::Initialize() {
 	//モデルデータのロード
 	hModel_ = Model::Load("Assets\\Donuts.fbx");
 	assert(hModel_ >= 0);
+
+	transform_.scale_ = { 0.7f, 0.7f, 0.7f };
 }
 
 //更新
 void Donuts::Update() {
-
+	transform_.rotate_.y += 0.5f;
 }
 
 //描画

@@ -53,7 +53,7 @@ VS_OUT VS(float4 pos : POSITION, float4 uv : TEXCOORD, float4 normal : NORMAL)
 	outData.pos = mul(pos, matWVP);
 
 	// UVç¿ïWÇÕÇªÇÃÇ‹Ç‹
-	outData.uv = uv;
+	outData.uv = uv.xy;
 
 	// ñ@ê¸Çïœå`
 	normal.w = 0;
@@ -88,7 +88,8 @@ float4 PS(VS_OUT inData) : SV_Target
 	// äKí≤ïœä∑
 	float2 uv;
 	uv.x = inData.color.r;
-	uv.y = 1;
+	uv.y = abs(dot(inData.normal, normalize(inData.eyeDir)));
+	return g_toon_texture.Sample(g_sampler, uv);
 
 	if (isTextured) {
 		diffuse = lightColor * g_texture.Sample(g_sampler, inData.uv) * g_toon_texture.Sample(g_sampler, uv);
@@ -102,6 +103,7 @@ float4 PS(VS_OUT inData) : SV_Target
 	float4 nLight = dot(inData.normal, normalize(lightPos));
 	float4 ref = normalize(2 * nLight * inData.normal - normalize(lightPos));
 	specular = pow(saturate(dot(ref, normalize(inData.eyeDir))), shininess) * specularColor;
+
 
 	return (diffuse + ambient);
 	//return (diffuse + ambient + specular);
