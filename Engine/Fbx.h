@@ -63,6 +63,8 @@ class Fbx
 	void InitMaterial(fbxsdk::FbxNode* pNode);
 
 	Texture* pToon_;
+	void RenderToon(Transform& transform);
+	void RenderEdge(Transform& transform);
 public:
 
 	Fbx();

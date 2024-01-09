@@ -48,20 +48,18 @@ VS_OUT VS(float4 pos : POSITION, float4 uv : TEXCOORD, float4 normal : NORMAL)
 	//ピクセルシェーダーへ渡す情報
 	VS_OUT outData = (VS_OUT)0;
 
+	// 法線を変形
+	normal.w = 0;
+	normal = normalize(mul(normal, matNormal));
+	outData.normal = normal;
+
 	//ローカル座標に、ワールド・ビュー・プロジェクション行列をかけて
 	//スクリーン座標に変換し、ピクセルシェーダーへ
-	//pos.z = pos.z + 1.0;
+	pos = pos + normal * 0.1;
 	outData.pos = mul(pos, matWVP);
 
 	// UV座標はそのまま
 	outData.uv = uv.xy;
-
-	// 法線を変形
-	normal.w = 0;
-	normal = mul(normal, matNormal);
-	normal = normalize(normal);
-
-	outData.normal = normal;
 
 	// 光源の位置を正規化
 	float4 light = normalize(lightPos);
@@ -80,6 +78,8 @@ VS_OUT VS(float4 pos : POSITION, float4 uv : TEXCOORD, float4 normal : NORMAL)
 //───────────────────────────────────────
 float4 PS(VS_OUT inData) : SV_Target
 {
+	return (0.0, 0.0, 0.0, 0.0);
+
 	float4 lightColor = float4(1.0, 1.0, 1.0, 1.0);		// 光源の色(強さ)
 
 	float4 diffuse;		// 拡散反射
@@ -89,9 +89,8 @@ float4 PS(VS_OUT inData) : SV_Target
 	// 階調変換
 	float2 uv;
 	uv.x = inData.color.r;
-	uv.y = 1;
-	//uv.y = abs(dot(inData.normal, normalize(inData.eyeDir)));
-	//return g_toon_texture.Sample(g_sampler, uv);
+	uv.y = abs(dot(inData.normal, normalize(inData.eyeDir)));
+	return g_toon_texture.Sample(g_sampler, uv);
 
 	if (isTextured) {
 		diffuse = lightColor * g_texture.Sample(g_sampler, inData.uv) * g_toon_texture.Sample(g_sampler, uv);
