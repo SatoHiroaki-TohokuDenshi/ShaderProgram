@@ -79,6 +79,9 @@
     <FxCompile Include="ToonEdge.hlsl">
       <Filter>02Shader</Filter>
     </FxCompile>
+    <FxCompile Include="NormalMapping.hlsl">
+      <Filter>02Shader</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\SafeMacro.h" />

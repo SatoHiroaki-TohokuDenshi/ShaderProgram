@@ -15,6 +15,7 @@ enum SHADER_TYPE
 	SHADER_3D,
 	SHADER_TOON,
 	SHADER_TOON_EDGE,
+	SHADER_NMAP,
 	SHADER_MAX,
 };
 
@@ -26,13 +27,6 @@ namespace Direct3D
 
 	//初期化
 	HRESULT Initialize(int winW, int winH, HWND hWnd);
-
-	//シェーダー準備
-	HRESULT InitShader();
-	HRESULT InitShader3D();
-	HRESULT InitShader2D();
-	HRESULT InitShaderToon();
-	HRESULT InitShaderToonEdge();
 
 	void SetShader(SHADER_TYPE type);
 
