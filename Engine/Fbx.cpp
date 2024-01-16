@@ -71,7 +71,7 @@ void Fbx::InitVertex(fbxsdk::FbxMesh* mesh)
 	VERTEX* vertices = new VERTEX[vertexCount_];
 
 	//全ポリゴン
-	for (DWORD poly = 0; poly < polygonCount_; poly++)
+	for (DWORD poly = 0; poly < (unsigned int)polygonCount_; poly++)
 	{
 		//3頂点分
 		for (int vertex = 0; vertex < 3; vertex++)
@@ -99,13 +99,20 @@ void Fbx::InitVertex(fbxsdk::FbxMesh* mesh)
 	for (int poly = 0; poly < polygonCount_; poly++) {
 		int sIndex = mesh->GetPolygonVertexIndex(poly);
 		FbxGeometryElementTangent* pTangent = mesh->GetElementTangent(0);
-		FbxVector4 tanVec = pTangent->GetDirectArray().GetAt(sIndex).mData;
-
-		for (int i = 0; i < 3; i++) {
-			int index = mesh->GetPolygonVertices()[sIndex + i];
-			vertices[index].tangent = {
-				(float)tanVec[0],(float)tanVec[0], (float)tanVec[0], (float)tanVec[0]
-			};
+		if (pTangent != nullptr) {
+			for (int i = 0; i < 3; i++) {
+				FbxVector4 tanVec = pTangent->GetDirectArray().GetAt(sIndex).mData;
+				int index = mesh->GetPolygonVertices()[sIndex + i];
+				vertices[index].tangent = {
+					(float)tanVec[0],(float)tanVec[0], (float)tanVec[0], (float)tanVec[0]
+				};
+			}
+		}
+		else {
+			for (int i = 0; i < 3; i++) {
+				int index = mesh->GetPolygonVertices()[sIndex + i];
+				vertices[index].tangent = { 0.0f, 0.0f, 0.0f, 0.0f };
+			}
 		}
 	}
 
@@ -144,7 +151,7 @@ void Fbx::InitIndex(fbxsdk::FbxMesh* mesh)
 	{
 		int count = 0;
 		//全ポリゴン
-		for (DWORD poly = 0; poly < polygonCount_; poly++)
+		for (DWORD poly = 0; poly < (unsigned int)polygonCount_; poly++)
 		{
 			//あるマテリアルを持ったポリゴンのリストをとってきて、頂点をリストアップ
 			FbxLayerElementMaterial* mtl = mesh->GetLayer(0)->GetMaterials();
