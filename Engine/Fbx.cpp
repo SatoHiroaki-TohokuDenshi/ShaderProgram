@@ -297,16 +297,30 @@ void Fbx::InitMaterial(fbxsdk::FbxNode* pNode)
 	}
 }
 
-void Fbx::Draw3D(Transform& transform)
+void Fbx::Draw3D(Transform& transform) {
+	transform.Calclation();
+
+	Render3D(transform);
+}
+
+void Fbx::DrawToon(Transform& transform) {
+	transform.Calclation();
+
+	RenderEdge(transform);
+	RenderToon(transform);
+}
+
+void Fbx::Release()
 {
+}
+
+void Fbx::Render3D(Transform& transform) {
 	Direct3D::SetShader(SHADER_3D);
-	transform.Calclation();//トランスフォームを計算
-	
 
 	for (int i = 0; i < materialCount_; i++)
 	{
 		//コンスタントバッファに情報を渡す
-		CONSTANT_BUFFER cb;
+		CONSTANT_BUFFER cb{};
 		cb.matWorld = XMMatrixTranspose(transform.GetWorldMatrix());
 		cb.matWVP = XMMatrixTranspose(transform.GetWorldMatrix() * Camera::GetViewMatrix() * Camera::GetProjectionMatrix());
 		cb.matNormal = XMMatrixTranspose(transform.GetNormalMatrix());
@@ -316,14 +330,14 @@ void Fbx::Draw3D(Transform& transform)
 		cb.shininess = pMaterialList_[i].shininess;
 
 		cb.isTextured = pMaterialList_[i].pTexture != nullptr;
-	
-		
+
+
 		D3D11_MAPPED_SUBRESOURCE pdata;
 		Direct3D::pContext_->Map(pConstantBuffer_, 0, D3D11_MAP_WRITE_DISCARD, 0, &pdata);	// GPUからのデータアクセスを止める
 		memcpy_s(pdata.pData, pdata.RowPitch, (void*)(&cb), sizeof(cb));	// データを値を送る
 
 		Direct3D::pContext_->Unmap(pConstantBuffer_, 0);	//再開
-		
+
 
 		//Direct3D::pContext_->UpdateSubresource(pConstantBuffer_, 0, NULL, &cb, 0, 0);
 
@@ -356,17 +370,6 @@ void Fbx::Draw3D(Transform& transform)
 		//描画
 		Direct3D::pContext_->DrawIndexed(indexCount_[i], 0, 0);
 	}
-}
-
-void Fbx::DrawToon(Transform& transform) {
-	transform.Calclation();
-
-	RenderEdge(transform);
-	RenderToon(transform);
-}
-
-void Fbx::Release()
-{
 }
 
 void Fbx::RenderToon(Transform& transform) {
@@ -493,4 +496,8 @@ void Fbx::RenderEdge(Transform& transform) {
 		//描画
 		Direct3D::pContext_->DrawIndexed(indexCount_[i], 0, 0);
 	}
+}
+
+void Fbx::RenderNMap(Transform& transform)
+{
 }
