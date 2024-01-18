@@ -44,6 +44,11 @@ void Model::Draw3D(int hModel) {
 	modelList[hModel]->pfbx_->Draw3D(modelList[hModel]->transform_);
 }
 
+void Model::DrawNMap(int hModel) {
+	//モデル番号は、modelListのインデックス
+	modelList[hModel]->pfbx_->DrawNMap(modelList[hModel]->transform_);
+}
+
 void Model::DrawToon(int hModel) {
 	//モデル番号は、modelListのインデックス
 	modelList[hModel]->pfbx_->DrawToon(modelList[hModel]->transform_);

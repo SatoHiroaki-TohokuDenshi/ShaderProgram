@@ -39,6 +39,7 @@ class Fbx
 		XMFLOAT4 specular;	// スペキュラー
 		float	 shininess;	// シャイニネス
 		BOOL isTextured;	// テクスチャがあるか
+		BOOL isNormalMap;	// ノーマルマップがあるか
 	};
 
 	struct VERTEX
@@ -76,6 +77,7 @@ public:
 	Fbx();
 	HRESULT Load(std::string fileName);
 	void    Draw3D(Transform& transform);
+	void	DrawNMap(Transform& transform);
 	void    DrawToon(Transform& transform);
 	void    Release();
 };

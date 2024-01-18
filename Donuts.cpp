@@ -18,7 +18,7 @@ void Donuts::Initialize() {
 	hModel_ = Model::Load("Assets\\Donuts.fbx");
 	assert(hModel_ >= 0);
 
-	transform_.scale_ = { 0.7f, 0.7f, 0.7f };
+	//transform_.scale_ = { 1.5f, 1.5, 1.5f };
 }
 
 //XV
@@ -29,7 +29,7 @@ void Donuts::Update() {
 //•`‰æ
 void Donuts::Draw(){
 	Model::SetTransform(hModel_, transform_);
-	Model::DrawToon(hModel_);
+	Model::DrawNMap(hModel_);
 }
 
 //ŠJ•ú
