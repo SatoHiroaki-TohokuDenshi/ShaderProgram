@@ -23,7 +23,8 @@ void Donuts::Initialize() {
 
 //XV
 void Donuts::Update() {
-	transform_.rotate_.y += 0.5f;
+	//transform_.rotate_.y += 0.5f;
+	//transform_.rotate_ = { (float)(rand() % 360), (float)(rand() % 360) ,(float)(rand() % 360) };
 }
 
 //•`‰æ

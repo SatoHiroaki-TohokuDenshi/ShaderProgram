@@ -117,8 +117,9 @@ float4 PS(VS_OUT inData) : SV_Target
 		float4 S = dot(tmpNormal, normalize(inData.light));
 		S = clamp(S, 0, 1);
 
-float4 nLight = dot(inData.normal, normalize(lightPos));
-		float4 ref = normalize(2 * nLight * inData.normal - normalize(lightPos));
+		//float4 nLight = dot(inData.normal, normalize(lightPos));
+		//float4 ref = normalize(2 * nLight * inData.normal - normalize(lightPos));
+		float4 ref = reflect(normalize(lightPos), tmpNormal);
 		specular = pow(saturate(dot(ref, normalize(inData.eyeDir))), shininess) * specularColor;
 
 		if (isTextured) {
@@ -129,6 +130,9 @@ float4 nLight = dot(inData.normal, normalize(lightPos));
 			diffuse = diffuseColor * S;
 			ambient = diffuseColor * ambientColor;
 		}
+
+		diffuse = diffuseColor * S;
+		ambient = diffuseColor * ambientColor* S;
 	}
 	else {
 		if (isTextured) {
@@ -144,5 +148,6 @@ float4 nLight = dot(inData.normal, normalize(lightPos));
 		float4 ref = normalize(2 * nLight * inData.normal - normalize(lightPos));
 		specular = pow(saturate(dot(ref, normalize(inData.eyeDir))), shininess) * specularColor;
 	}
+	return diffuse;
 	return (diffuse + ambient + specular);
 }
