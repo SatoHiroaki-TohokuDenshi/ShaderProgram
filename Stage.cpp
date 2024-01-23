@@ -5,6 +5,7 @@
 #include "Engine/Input.h"
 
 #include "Donuts.h"
+#include "Dice.h"
 
 namespace {
 	const float velocity = 0.1f;
@@ -24,7 +25,8 @@ Stage::~Stage() {
 
 //èâä˙âª
 void Stage::Initialize() {
-	Instantiate<Donuts>(this);
+	//Instantiate<Donuts>(this);
+	Instantiate<Dice>(this);
 	hModel_ = Model::Load("Assets\\Ball.fbx");
 	assert(hModel_ >= 0);
 
@@ -35,7 +37,7 @@ void Stage::Initialize() {
 }
 
 void Stage::InitConstantBuffer() {
-	D3D11_BUFFER_DESC cb;
+	D3D11_BUFFER_DESC cb{};
 	cb.ByteWidth = sizeof(CB_STAGE);
 	cb.Usage = D3D11_USAGE_DEFAULT;
 	cb.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
@@ -66,7 +68,7 @@ void Stage::Update() {
 }
 
 void Stage::UpdateConstantBuffer() {
-	CB_STAGE cb;
+	CB_STAGE cb{};
 	XMStoreFloat4(&cb.eyePos, Camera::GetCameraPos());
 	cb.lightPos = light_;
 
