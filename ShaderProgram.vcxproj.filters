@@ -65,6 +65,7 @@
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Donuts.cpp" />
+    <ClCompile Include="Ball.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Simple2D.hlsl">
@@ -127,6 +128,7 @@
       <Filter>01Engine\ObjectManager</Filter>
     </ClInclude>
     <ClInclude Include="Donuts.h" />
+    <ClInclude Include="Ball.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

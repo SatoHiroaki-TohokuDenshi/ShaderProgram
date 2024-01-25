@@ -1,39 +1,39 @@
-#include "Donuts.h"
+#include "Ball.h"
 #include "Engine/Model.h"
 
 //コンストラクタ
-Donuts::Donuts(GameObject* parent)
-	:GameObject(parent, "Donuts"), hModel_(-1)
+Ball::Ball(GameObject* parent)
+	:GameObject(parent, "Ball"), hModel_(-1)
 {
 }
 
 //デストラクタ
-Donuts::~Donuts()
+Ball::~Ball()
 {
 }
 
 //初期化
-void Donuts::Initialize() {
+void Ball::Initialize() {
 	//モデルデータのロード
-	hModel_ = Model::Load("Assets\\Donuts.fbx");
+	hModel_ = Model::Load("Assets\\Ball_new.fbx");
 	assert(hModel_ >= 0);
 
 	//transform_.scale_ = { 1.5f, 1.5, 1.5f };
 }
 
 //更新
-void Donuts::Update() {
-	transform_.rotate_.y += 0.5f;
+void Ball::Update() {
+	//transform_.rotate_.y += 0.5f;
 	//transform_.rotate_ = { (float)(rand() % 360), (float)(rand() % 360) ,(float)(rand() % 360) };
 }
 
 //描画
-void Donuts::Draw(){
+void Ball::Draw() {
 	Model::SetTransform(hModel_, transform_);
 	Model::DrawNMap(hModel_);
 }
 
 //開放
-void Donuts::Release() {
+void Ball::Release() {
 
 }
