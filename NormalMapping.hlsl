@@ -66,6 +66,7 @@ VS_OUT VS(float4 pos : POSITION, float4 uv : TEXCOORD, float4 normal : NORMAL, f
 	normal = normalize(normal);
 
 	outData.normal = normal;
+	outData.normal.w = 0;
 	
 	tangent.w = 0;
 	tangent = mul(tangent, matNormal);
@@ -85,12 +86,12 @@ VS_OUT VS(float4 pos : POSITION, float4 uv : TEXCOORD, float4 normal : NORMAL, f
 
 	outData.nEyeDir.x = dot(outData.eyeDir, tangent);
 	outData.nEyeDir.y = dot(outData.eyeDir, binormal);
-	outData.nEyeDir.z = dot(outData.eyeDir, normal);
+	outData.nEyeDir.z = dot(outData.eyeDir, outData.normal);
 	outData.nEyeDir.w = 0;
 
 	outData.light.x = dot(light, tangent);
 	outData.light.y = dot(light, binormal);
-	outData.light.z = dot(light, normal);
+	outData.light.z = dot(light, outData.normal);
 	outData.light.w = 0;
 
 	//Ç‹Ç∆ÇﬂÇƒèoóÕ
