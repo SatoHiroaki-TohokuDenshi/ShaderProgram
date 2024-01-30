@@ -30,7 +30,7 @@ void Dice::Update() {
 //•`‰æ
 void Dice::Draw() {
 	Model::SetTransform(hModel_, transform_);
-	Model::Draw3D(hModel_);
+	Model::DrawAlpha(hModel_);
 }
 
 //ŠJ•ú

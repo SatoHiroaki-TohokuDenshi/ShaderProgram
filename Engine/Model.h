@@ -17,5 +17,6 @@ namespace Model {
 	void Draw3D(int hModel);
 	void DrawNMap(int hModel);
 	void DrawToon(int hModel);
+	void DrawAlpha(int hModel);
 	void Release();
 }

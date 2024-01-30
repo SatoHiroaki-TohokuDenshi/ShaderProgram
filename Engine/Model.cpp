@@ -54,6 +54,12 @@ void Model::DrawToon(int hModel) {
 	modelList[hModel]->pfbx_->DrawToon(modelList[hModel]->transform_);
 }
 
+void Model::DrawAlpha(int hModel)
+{
+	//モデル番号は、modelListのインデックス
+	modelList[hModel]->pfbx_->DrawAlpha(modelList[hModel]->transform_);
+}
+
 void Model::Release()
 {
 	bool isReffered = false; //参照されてる？

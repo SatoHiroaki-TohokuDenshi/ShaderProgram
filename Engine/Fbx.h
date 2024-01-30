@@ -72,6 +72,7 @@ class Fbx
 	void RenderEdge(Transform& transform);
 
 	void RenderNMap(Transform& transform);
+	void RenderAlpha(Transform& transform);
 public:
 
 	Fbx();
@@ -79,5 +80,6 @@ public:
 	void    Draw3D(Transform& transform);
 	void	DrawNMap(Transform& transform);
 	void    DrawToon(Transform& transform);
+	void	DrawAlpha(Transform& transform);
 	void    Release();
 };
