@@ -6,6 +6,7 @@
 
 #include "Donuts.h"
 #include "Ball.h"
+#include "Dice.h"
 
 namespace {
 	const float velocity = 0.1f;
@@ -27,6 +28,7 @@ Stage::~Stage() {
 void Stage::Initialize() {
 	//Instantiate<Donuts>(this);
 	Instantiate<Ball>(this);
+	Instantiate<Dice>(this);
 	hModel_ = Model::Load("Assets\\Ball.fbx");
 	assert(hModel_ >= 0);
 

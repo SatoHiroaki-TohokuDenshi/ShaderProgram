@@ -86,6 +86,7 @@ float4 PS(VS_OUT inData) : SV_Target
 	if (isTextured) {
 		diffuse = lightColor * g_texture.Sample(g_sampler, inData.uv) * inData.color;
 		ambient = lightColor * g_texture.Sample(g_sampler, inData.uv) * ambinetColor;
+		diffuse.a = g_texture.Sample(g_sampler, inData.uv).a;
 	}
 	else {
 		diffuse = lightColor * diffuseColor * inData.color;
@@ -96,5 +97,6 @@ float4 PS(VS_OUT inData) : SV_Target
 	float4 ref = normalize(2 * nLight * inData.normal - normalize(lightPos));
 	specular = pow(saturate(dot(ref, normalize(inData.eyeDir))), shininess) * specularColor;
 
+	return diffuse;
 	return (diffuse + ambient + specular);
 }

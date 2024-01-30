@@ -19,6 +19,7 @@ void Ball::Initialize() {
 	assert(hModel_ >= 0);
 
 	transform_.scale_ = { 1.5f, 1.5, 1.5f };
+	transform_.position_.z = 3.0f;
 }
 
 //XV

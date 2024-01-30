@@ -66,6 +66,7 @@
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Donuts.cpp" />
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Dice.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Simple2D.hlsl">
@@ -129,6 +130,7 @@
     </ClInclude>
     <ClInclude Include="Donuts.h" />
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="Dice.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
