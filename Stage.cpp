@@ -4,9 +4,7 @@
 #include "Engine/Model.h"
 #include "Engine/Input.h"
 
-#include "Donuts.h"
-#include "Ball.h"
-#include "Dice.h"
+#include "Water.h"
 
 namespace {
 	const float velocity = 0.1f;
@@ -26,9 +24,8 @@ Stage::~Stage() {
 
 //‰Šú‰»
 void Stage::Initialize() {
-	//Instantiate<Donuts>(this);
-	Instantiate<Ball>(this);
-	Instantiate<Dice>(this);
+	Instantiate<Water>(this);
+
 	hModel_ = Model::Load("Assets\\Ball.fbx");
 	assert(hModel_ >= 0);
 
