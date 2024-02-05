@@ -38,6 +38,7 @@ class Fbx
 		XMFLOAT4 ambient;	// アンビエント
 		XMFLOAT4 specular;	// スペキュラー
 		float	 shininess;	// シャイニネス
+		float scroll;
 		BOOL isTextured;	// テクスチャがあるか
 		BOOL isNormalMap;	// ノーマルマップがあるか
 	};
