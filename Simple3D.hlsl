@@ -17,7 +17,9 @@ cbuffer gModel : register(b0)
 	float4		ambinetColor;	// 環境光係数
 	float4		specularColor;	// 鏡面反射係数
 	float		shininess;		// 鏡面反射強度
+	float		scroll;
 	bool		isTextured;		// テクスチャーが貼られているかどうか
+	bool		isNMap;
 };
 
 cbuffer gModel : register(b1)

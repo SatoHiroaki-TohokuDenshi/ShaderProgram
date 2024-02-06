@@ -118,7 +118,7 @@ void Fbx::InitVertex(fbxsdk::FbxMesh* mesh)
 
 	//頂点バッファ
 	HRESULT hr;
-	D3D11_BUFFER_DESC bd_vertex;
+	D3D11_BUFFER_DESC bd_vertex{};
 	bd_vertex.ByteWidth = sizeof(VERTEX) * vertexCount_;
 	bd_vertex.Usage = D3D11_USAGE_DEFAULT;
 	bd_vertex.BindFlags = D3D11_BIND_VERTEX_BUFFER;
@@ -356,6 +356,7 @@ void Fbx::Render3D(Transform& transform) {
 		cb.shininess = pMaterialList_[i].shininess;
 
 		cb.isTextured = pMaterialList_[i].pTexture != nullptr;
+		cb.isNormalMap = pMaterialList_[i].pNormalMap != nullptr;
 
 		cb.scroll = 0.0f;
 
@@ -415,6 +416,7 @@ void Fbx::RenderToon(Transform& transform) {
 		cb.shininess = pMaterialList_[i].shininess;
 
 		cb.isTextured = pMaterialList_[i].pTexture != nullptr;
+		cb.isNormalMap = pMaterialList_[i].pNormalMap != nullptr;
 
 		cb.scroll = 0.0f;
 
@@ -481,6 +483,7 @@ void Fbx::RenderEdge(Transform& transform) {
 		cb.shininess = pMaterialList_[i].shininess;
 
 		cb.isTextured = pMaterialList_[i].pTexture != nullptr;
+		cb.isNormalMap = pMaterialList_[i].pNormalMap != nullptr;
 
 		cb.scroll = 0.0f;
 
@@ -609,6 +612,7 @@ void Fbx::RenderAlpha(Transform& transform)
 		cb.shininess = pMaterialList_[i].shininess;
 
 		cb.isTextured = pMaterialList_[i].pTexture != nullptr;
+		cb.isNormalMap = pMaterialList_[i].pNormalMap != nullptr;
 
 		cb.scroll = 0.0f;
 

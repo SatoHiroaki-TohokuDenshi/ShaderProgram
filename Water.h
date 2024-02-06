@@ -5,6 +5,7 @@
 class Water : public GameObject {
 private:
 	int hModel_;    //モデル番号
+	float scroll_;
 
 public:
 	//コンストラクタ

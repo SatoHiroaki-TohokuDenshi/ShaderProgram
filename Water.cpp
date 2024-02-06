@@ -3,7 +3,7 @@
 
 //コンストラクタ
 Water::Water(GameObject* parent)
-	:GameObject(parent, "Water"), hModel_(-1)
+	:GameObject(parent, "Water"), hModel_(-1), scroll_(0)
 {
 }
 
@@ -27,7 +27,7 @@ void Water::Update() {
 //描画
 void Water::Draw() {
 	Model::SetTransform(hModel_, transform_);
-	Model::DrawNMap(hModel_);
+	Model::DrawWater(hModel_, scroll_);
 }
 
 //開放

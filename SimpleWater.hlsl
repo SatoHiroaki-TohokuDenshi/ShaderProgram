@@ -152,6 +152,7 @@ float4 PS(VS_OUT inData) : SV_Target
 		float4 ref = normalize(2 * nLight * inData.normal - normalize(lightPos));
 		specular = pow(saturate(dot(ref, normalize(inData.eyeDir))), shininess) * specularColor;
 	}
+	return diffuse;
 	//return specular;
 	return (diffuse + ambient + specular);
 }
