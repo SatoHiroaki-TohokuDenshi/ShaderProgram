@@ -18,5 +18,6 @@ namespace Model {
 	void DrawNMap(int hModel);
 	void DrawToon(int hModel);
 	void DrawAlpha(int hModel);
+	void DrawWater(int hModel, float scroll);
 	void Release();
 }

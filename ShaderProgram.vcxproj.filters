@@ -88,6 +88,9 @@
     <FxCompile Include="ShaderAlpha.hlsl">
       <Filter>02Shader</Filter>
     </FxCompile>
+    <FxCompile Include="SimpleWater.hlsl">
+      <Filter>02Shader</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\SafeMacro.h" />

@@ -74,6 +74,8 @@ class Fbx
 
 	void RenderNMap(Transform& transform);
 	void RenderAlpha(Transform& transform);
+
+	void RenderWater(Transform& transform, float scroll);
 public:
 
 	Fbx();
@@ -82,5 +84,6 @@ public:
 	void	DrawNMap(Transform& transform);
 	void    DrawToon(Transform& transform);
 	void	DrawAlpha(Transform& transform);
+	void	DrawWater(Transform& transform, float scroll);
 	void    Release();
 };

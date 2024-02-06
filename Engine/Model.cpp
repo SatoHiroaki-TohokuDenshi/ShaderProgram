@@ -54,10 +54,14 @@ void Model::DrawToon(int hModel) {
 	modelList[hModel]->pfbx_->DrawToon(modelList[hModel]->transform_);
 }
 
-void Model::DrawAlpha(int hModel)
-{
+void Model::DrawAlpha(int hModel) {
 	//モデル番号は、modelListのインデックス
 	modelList[hModel]->pfbx_->DrawAlpha(modelList[hModel]->transform_);
+}
+
+void Model::DrawWater(int hModel, float scroll) {
+	//モデル番号は、modelListのインデックス
+	modelList[hModel]->pfbx_->DrawWater(modelList[hModel]->transform_, scroll);
 }
 
 void Model::Release()
