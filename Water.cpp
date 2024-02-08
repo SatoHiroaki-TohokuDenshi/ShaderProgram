@@ -27,7 +27,8 @@ void Water::Update() {
 //•`‰æ
 void Water::Draw() {
 	Model::SetTransform(hModel_, transform_);
-	Model::Draw3D(hModel_);
+	Model::DrawNMap(hModel_);
+	//Model::Draw3D(hModel_);
 	//Model::DrawWater(hModel_, scroll_);
 }
 
